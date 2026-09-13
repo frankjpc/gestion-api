@@ -1,0 +1,257 @@
+[
+  {
+    "id": 1,
+    "student_id": 1,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:16:26.874Z"
+  },
+  {
+    "id": 2,
+    "student_id": 2,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:16:29.107Z"
+  },
+  {
+    "id": 3,
+    "student_id": 3,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:16:30.849Z"
+  },
+  {
+    "id": 4,
+    "student_id": 5,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:23:37.731Z"
+  },
+  {
+    "id": 5,
+    "student_id": 6,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:23:40.465Z"
+  },
+  {
+    "id": 6,
+    "student_id": 7,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:23:43.511Z"
+  },
+  {
+    "id": 7,
+    "student_id": 4,
+    "week": 1,
+    "attended": false,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:24:08.941Z",
+    "updated_at": "2026-05-10T17:49:40.637Z"
+  },
+  {
+    "id": 8,
+    "student_id": 11,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:24:26.724Z"
+  },
+  {
+    "id": 9,
+    "student_id": 13,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:24:36.596Z"
+  },
+  {
+    "id": 10,
+    "student_id": 12,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:24:38.951Z"
+  },
+  {
+    "id": 11,
+    "student_id": 27,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:34:56.060Z",
+    "updated_at": "2026-05-10T17:34:59.306Z"
+  },
+  {
+    "id": 12,
+    "student_id": 28,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:15.920Z"
+  },
+  {
+    "id": 13,
+    "student_id": 26,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:19.876Z"
+  },
+  {
+    "id": 14,
+    "student_id": 25,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:26.335Z"
+  },
+  {
+    "id": 15,
+    "student_id": 23,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:33.890Z"
+  },
+  {
+    "id": 16,
+    "student_id": 24,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:38.484Z"
+  },
+  {
+    "id": 17,
+    "student_id": 22,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:47.676Z"
+  },
+  {
+    "id": 18,
+    "student_id": 21,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:51.554Z"
+  },
+  {
+    "id": 19,
+    "student_id": 20,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:54.472Z"
+  },
+  {
+    "id": 20,
+    "student_id": 10,
+    "week": 1,
+    "attended": false,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:35:59.488Z",
+    "updated_at": "2026-05-10T17:49:02.528Z"
+  },
+  {
+    "id": 21,
+    "student_id": 14,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:19.887Z"
+  },
+  {
+    "id": 22,
+    "student_id": 8,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:23.506Z"
+  },
+  {
+    "id": 23,
+    "student_id": 15,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:37.532Z"
+  },
+  {
+    "id": 24,
+    "student_id": 19,
+    "week": 1,
+    "attended": true,
+    "cancelled": false,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:41.604Z"
+  },
+  {
+    "id": 25,
+    "student_id": 9,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:44.942Z"
+  },
+  {
+    "id": 26,
+    "student_id": 16,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:48.191Z"
+  },
+  {
+    "id": 27,
+    "student_id": 17,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:55.027Z"
+  },
+  {
+    "id": 28,
+    "student_id": 18,
+    "week": 1,
+    "attended": false,
+    "cancelled": true,
+    "notes": "",
+    "created_at": "2026-05-10T17:36:57.728Z"
+  }
+]

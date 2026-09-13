@@ -1,0 +1,226 @@
+[
+  {
+    "id": 1,
+    "student_id": 1,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 2,
+    "student_id": 2,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 3,
+    "student_id": 3,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 4,
+    "student_id": 4,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 5,
+    "student_id": 5,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 6,
+    "student_id": 6,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 7,
+    "student_id": 7,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 8,
+    "student_id": 8,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 9,
+    "student_id": 9,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 10,
+    "student_id": 10,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 11,
+    "student_id": 11,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 12,
+    "student_id": 12,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:16:27.109Z"
+  },
+  {
+    "id": 13,
+    "student_id": 13,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:23:37.877Z"
+  },
+  {
+    "id": 14,
+    "student_id": 14,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:23:37.877Z"
+  },
+  {
+    "id": 15,
+    "student_id": 15,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:23:37.877Z"
+  },
+  {
+    "id": 16,
+    "student_id": 16,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:23:37.877Z"
+  },
+  {
+    "id": 17,
+    "student_id": 17,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 18,
+    "student_id": 18,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 19,
+    "student_id": 19,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 20,
+    "student_id": 20,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 21,
+    "student_id": 21,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 22,
+    "student_id": 22,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 23,
+    "student_id": 23,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 24,
+    "student_id": 24,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 25,
+    "student_id": 25,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 26,
+    "student_id": 26,
+    "weeks_attended": 1,
+    "final_grade": 1,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 27,
+    "student_id": 27,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  },
+  {
+    "id": 28,
+    "student_id": 28,
+    "weeks_attended": 0,
+    "final_grade": 0,
+    "cancelled": false,
+    "created_at": "2026-05-10T17:34:56.211Z"
+  }
+]
