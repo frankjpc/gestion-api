@@ -1,20 +1,34 @@
-import { getDb } from '@/lib/db';
+import { supabase } from '@/lib/db';
 
 export async function GET() {
   try {
-    const db = getDb();
+    const { data, error } = await supabase
+      .from('grades')
+      .select(`
+        id,
+        student_id,
+        weeks_attended,
+        final_grade,
+        cancelled,
+        notes,
+        created_at,
+        students ( name, paid )
+      `)
+      .order('students(name)');
 
-    const rows = db.prepare(`
-      SELECT g.*, s.name AS student_name, s.paid
-      FROM grades g
-      JOIN students s ON g.student_id = s.id
-      ORDER BY s.name
-    `).all();
+    if (error) throw error;
 
-    const result = rows.map((row) => ({
-      ...row,
-      cancelled: row.cancelled === 1,
-      paid: row.paid === 1,
+    // Flatten the joined student data
+    const result = data.map((row) => ({
+      id:            row.id,
+      student_id:    row.student_id,
+      student_name:  row.students?.name ?? 'Unknown',
+      paid:          row.students?.paid  ?? false,
+      weeks_attended: row.weeks_attended,
+      final_grade:   row.final_grade,
+      cancelled:     row.cancelled,
+      notes:         row.notes,
+      created_at:    row.created_at,
     }));
 
     return Response.json(result);
@@ -33,51 +47,46 @@ export async function POST(request) {
       return Response.json({ error: 'Invalid request' }, { status: 400 });
     }
 
-    const db = getDb();
-    const students = db.prepare('SELECT * FROM students').all();
+    // Fetch all students
+    const { data: students, error: studentsError } = await supabase
+      .from('students')
+      .select('id, cancelled');
+    if (studentsError) throw studentsError;
 
-    const upsertGrade = db.prepare(`
-      INSERT INTO grades (student_id, weeks_attended, final_grade, cancelled, updated_at)
-      VALUES (@student_id, @weeks_attended, @final_grade, @cancelled, @updated_at)
-      ON CONFLICT(student_id) DO UPDATE SET
-        weeks_attended = excluded.weeks_attended,
-        final_grade    = excluded.final_grade,
-        cancelled      = excluded.cancelled,
-        updated_at     = excluded.updated_at
-    `);
+    // Fetch all attendance records
+    const { data: attendance, error: attendanceError } = await supabase
+      .from('attendance')
+      .select('student_id, attended, cancelled');
+    if (attendanceError) throw attendanceError;
 
-    // Run all upserts in a single transaction for performance
-    const calculateAll_tx = db.transaction(() => {
-      for (const student of students) {
-        if (student.cancelled === 1) {
-          upsertGrade.run({
-            student_id: student.id,
-            weeks_attended: 0,
-            final_grade: 0,
-            cancelled: 1,
-            updated_at: new Date().toISOString(),
-          });
-        } else {
-          const weeksAttended = db.prepare(`
-            SELECT COUNT(*) AS cnt
-            FROM attendance
-            WHERE student_id = ? AND attended = 1 AND cancelled = 0
-          `).get(student.id).cnt;
-
-          const finalGrade = Math.min(weeksAttended, 5);
-
-          upsertGrade.run({
-            student_id: student.id,
-            weeks_attended: weeksAttended,
-            final_grade: finalGrade,
-            cancelled: 0,
-            updated_at: new Date().toISOString(),
-          });
-        }
+    // Calculate grades for each student
+    const gradesToUpsert = students.map((student) => {
+      if (student.cancelled) {
+        return {
+          student_id:     student.id,
+          weeks_attended: 0,
+          final_grade:    0,
+          cancelled:      true,
+        };
       }
+
+      const weeksAttended = attendance.filter(
+        (a) => a.student_id === student.id && a.attended && !a.cancelled
+      ).length;
+
+      return {
+        student_id:     student.id,
+        weeks_attended: weeksAttended,
+        final_grade:    Math.min(weeksAttended, 5),
+        cancelled:      false,
+      };
     });
 
-    calculateAll_tx();
+    const { error: upsertError } = await supabase
+      .from('grades')
+      .upsert(gradesToUpsert, { onConflict: 'student_id' });
+
+    if (upsertError) throw upsertError;
 
     return Response.json({ success: true, message: 'All grades calculated' });
   } catch (error) {

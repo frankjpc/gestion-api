@@ -1,25 +1,34 @@
-import { getDb } from '@/lib/db';
+import { supabase } from '@/lib/db';
 
 export async function GET() {
   try {
-    const db = getDb();
-    const students = db.prepare('SELECT * FROM students ORDER BY name').all();
-    const attendance = db.prepare('SELECT * FROM attendance').all();
+    const { data: students, error: studentsError } = await supabase
+      .from('students')
+      .select('id, name')
+      .order('name');
 
-    // Build the attendance matrix: one row per student, weeks 1-6
+    if (studentsError) throw studentsError;
+
+    const { data: attendance, error: attendanceError } = await supabase
+      .from('attendance')
+      .select('student_id, week, attended, cancelled, notes');
+
+    if (attendanceError) throw attendanceError;
+
+    // Build the attendance matrix: one entry per student with weeks 1-6
     const attendanceMatrix = students.map((student) => {
       const studentRecords = attendance.filter((a) => a.student_id === student.id);
       const weeks = {};
       for (let w = 1; w <= 6; w++) {
         const record = studentRecords.find((r) => r.week === w);
         weeks[w] = {
-          attended: record ? record.attended === 1 : false,
-          cancelled: record ? record.cancelled === 1 : false,
-          notes: record?.notes || '',
+          attended:  record?.attended  ?? false,
+          cancelled: record?.cancelled ?? false,
+          notes:     record?.notes     ?? '',
         };
       }
       return {
-        student_id: student.id,
+        student_id:   student.id,
         student_name: student.name,
         weeks,
       };
@@ -44,25 +53,20 @@ export async function POST(request) {
       );
     }
 
-    const db = getDb();
+    const { error } = await supabase
+      .from('attendance')
+      .upsert(
+        {
+          student_id,
+          week,
+          attended:  attended  ?? false,
+          cancelled: cancelled ?? false,
+          notes:     notes     ?? '',
+        },
+        { onConflict: 'student_id,week' }
+      );
 
-    // Upsert: insert or replace if (student_id, week) already exists
-    db.prepare(`
-      INSERT INTO attendance (student_id, week, attended, cancelled, notes, updated_at)
-      VALUES (@student_id, @week, @attended, @cancelled, @notes, @updated_at)
-      ON CONFLICT(student_id, week) DO UPDATE SET
-        attended   = excluded.attended,
-        cancelled  = excluded.cancelled,
-        notes      = excluded.notes,
-        updated_at = excluded.updated_at
-    `).run({
-      student_id,
-      week,
-      attended: attended ? 1 : 0,
-      cancelled: cancelled ? 1 : 0,
-      notes: notes || '',
-      updated_at: new Date().toISOString(),
-    });
+    if (error) throw error;
 
     return Response.json({ success: true }, { status: 201 });
   } catch (error) {
