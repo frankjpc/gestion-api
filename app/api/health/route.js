@@ -1,7 +1,9 @@
-import { supabase } from '@/lib/db';
+import { getSupabase } from '@/lib/db';
 
 export async function GET() {
   try {
+    const supabase = getSupabase();
+
     const [studentsRes, attendanceRes, gradesRes] = await Promise.all([
       supabase.from('students').select('*', { count: 'exact', head: true }),
       supabase.from('attendance').select('*', { count: 'exact', head: true }),
@@ -16,9 +18,9 @@ export async function GET() {
       status:  'ok',
       message: 'Database is ready (Supabase)',
       data: {
-        students:          studentsRes.count,
+        students:           studentsRes.count,
         attendance_records: attendanceRes.count,
-        grades:            gradesRes.count,
+        grades:             gradesRes.count,
       },
     });
   } catch (error) {

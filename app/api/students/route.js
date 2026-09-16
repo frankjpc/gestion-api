@@ -1,7 +1,8 @@
-import { supabase } from '@/lib/db';
+import { getSupabase } from '@/lib/db';
 
 export async function GET() {
   try {
+    const supabase = getSupabase();
     const { data, error } = await supabase
       .from('students')
       .select('id, name, email, identification, paid, cancelled, cancellation_date, created_at')
@@ -27,6 +28,7 @@ export async function POST(request) {
       );
     }
 
+    const supabase = getSupabase();
     const { data, error } = await supabase
       .from('students')
       .insert({ name, email: email || '', identification, paid: paid ?? false })
@@ -34,7 +36,6 @@ export async function POST(request) {
       .single();
 
     if (error) {
-      // Unique constraint violation (duplicate identification)
       if (error.code === '23505') {
         return Response.json(
           { error: 'Student with this identification already exists' },

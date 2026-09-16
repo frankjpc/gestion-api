@@ -1,7 +1,9 @@
-import { supabase } from '@/lib/db';
+import { getSupabase } from '@/lib/db';
 
 export async function GET() {
   try {
+    const supabase = getSupabase();
+
     const { data, error } = await supabase
       .from('grades')
       .select(`
@@ -18,17 +20,16 @@ export async function GET() {
 
     if (error) throw error;
 
-    // Flatten the joined student data
     const result = data.map((row) => ({
-      id:            row.id,
-      student_id:    row.student_id,
-      student_name:  row.students?.name ?? 'Unknown',
-      paid:          row.students?.paid  ?? false,
+      id:             row.id,
+      student_id:     row.student_id,
+      student_name:   row.students?.name ?? 'Unknown',
+      paid:           row.students?.paid  ?? false,
       weeks_attended: row.weeks_attended,
-      final_grade:   row.final_grade,
-      cancelled:     row.cancelled,
-      notes:         row.notes,
-      created_at:    row.created_at,
+      final_grade:    row.final_grade,
+      cancelled:      row.cancelled,
+      notes:          row.notes,
+      created_at:     row.created_at,
     }));
 
     return Response.json(result);
@@ -47,33 +48,25 @@ export async function POST(request) {
       return Response.json({ error: 'Invalid request' }, { status: 400 });
     }
 
-    // Fetch all students
+    const supabase = getSupabase();
+
     const { data: students, error: studentsError } = await supabase
       .from('students')
       .select('id, cancelled');
     if (studentsError) throw studentsError;
 
-    // Fetch all attendance records
     const { data: attendance, error: attendanceError } = await supabase
       .from('attendance')
       .select('student_id, attended, cancelled');
     if (attendanceError) throw attendanceError;
 
-    // Calculate grades for each student
     const gradesToUpsert = students.map((student) => {
       if (student.cancelled) {
-        return {
-          student_id:     student.id,
-          weeks_attended: 0,
-          final_grade:    0,
-          cancelled:      true,
-        };
+        return { student_id: student.id, weeks_attended: 0, final_grade: 0, cancelled: true };
       }
-
       const weeksAttended = attendance.filter(
         (a) => a.student_id === student.id && a.attended && !a.cancelled
       ).length;
-
       return {
         student_id:     student.id,
         weeks_attended: weeksAttended,

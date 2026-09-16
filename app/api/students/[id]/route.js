@@ -1,8 +1,9 @@
-import { supabase } from '@/lib/db';
+import { getSupabase } from '@/lib/db';
 
 export async function GET(request, { params }) {
   try {
     const { id } = await params;
+    const supabase = getSupabase();
 
     const { data, error } = await supabase
       .from('students')
@@ -26,8 +27,8 @@ export async function PUT(request, { params }) {
   try {
     const { id } = await params;
     const body = await request.json();
+    const supabase = getSupabase();
 
-    // Only update fields that were sent
     const updates = {};
     if (body.name !== undefined)              updates.name = body.name;
     if (body.email !== undefined)             updates.email = body.email;
@@ -58,6 +59,7 @@ export async function PUT(request, { params }) {
 export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
+    const supabase = getSupabase();
 
     const { error } = await supabase
       .from('students')
@@ -66,7 +68,6 @@ export async function DELETE(request, { params }) {
 
     if (error) throw error;
 
-    // CASCADE in the schema handles attendance and grades deletion automatically
     return Response.json({ success: true });
   } catch (error) {
     console.error('Error deleting student:', error);

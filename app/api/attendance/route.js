@@ -1,7 +1,9 @@
-import { supabase } from '@/lib/db';
+import { getSupabase } from '@/lib/db';
 
 export async function GET() {
   try {
+    const supabase = getSupabase();
+
     const { data: students, error: studentsError } = await supabase
       .from('students')
       .select('id, name')
@@ -15,7 +17,6 @@ export async function GET() {
 
     if (attendanceError) throw attendanceError;
 
-    // Build the attendance matrix: one entry per student with weeks 1-6
     const attendanceMatrix = students.map((student) => {
       const studentRecords = attendance.filter((a) => a.student_id === student.id);
       const weeks = {};
@@ -53,6 +54,7 @@ export async function POST(request) {
       );
     }
 
+    const supabase = getSupabase();
     const { error } = await supabase
       .from('attendance')
       .upsert(
