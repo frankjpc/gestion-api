@@ -97,19 +97,17 @@ export default function Home() {
         {dbStatus === 'error' && (
           <Card className="mb-8 border-red-200 bg-red-50">
             <CardHeader>
-              <CardTitle className="text-red-900">Error de conexión a la base de datos</CardTitle>
+              <CardTitle className="text-red-900">Error de conexión a Supabase</CardTitle>
             </CardHeader>
             <CardContent className="text-red-800 space-y-3">
-              <p className="font-semibold">No se puede conectar a MySQL en localhost:3307</p>
-              <p className="text-sm">Verifica los siguientes pasos:</p>
+              <p className="font-semibold">No se pudo conectar con la base de datos.</p>
+              <p className="text-sm">Si estás en Vercel, asegúrate de haber configurado las siguientes <strong>Environment Variables</strong>:</p>
               <ul className="text-sm list-disc list-inside space-y-2">
-                <li>MySQL está instalado y ejecutándose en el puerto <code className="bg-red-100 px-1">3307</code></li>
-                <li>El archivo <code className="bg-red-100 px-1">.env.local</code> existe en la raíz del proyecto con las credenciales correctas</li>
-                <li>Las credenciales en <code className="bg-red-100 px-1">.env.local</code> son correctas: host, usuario, contraseña y base de datos</li>
-                <li>Si MySQL está en otro servidor, cambia <code className="bg-red-100 px-1">DB_HOST</code> en <code className="bg-red-100 px-1">.env.local</code> a la IP correcta</li>
+                <li><code className="bg-red-100 px-1">NEXT_PUBLIC_SUPABASE_URL</code></li>
+                <li><code className="bg-red-100 px-1">SUPABASE_SERVICE_ROLE_KEY</code></li>
               </ul>
               <p className="text-sm mt-4 pt-4 border-t border-red-200">
-                Una vez corrijas los errores, recarga esta página.
+                Una vez agregadas, debes hacer un <strong>Redeploy</strong> en Vercel para que tomen efecto.
               </p>
             </CardContent>
           </Card>
